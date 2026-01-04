@@ -1,1 +1,14 @@
+import pandas as pd
+
+# Stooq Apple daily prices
+url = "https://stooq.com/q/d/l/?s=aapl.us&i=d"
+
+df = pd.read_csv(url)
+df['Date'] = pd.to_datetime(df['Date'])
+df = df.sort_values('Date')
+
+# Zeitraum filtern
+df = df[(df['Date'] >= '2015-01-01') & (df['Date'] <= '2024-12-31')]
+
+df.head()
 
